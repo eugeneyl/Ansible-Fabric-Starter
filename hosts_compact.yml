@@ -30,7 +30,7 @@ all:
             - peer
             - root_peer
             - explorer
-          org: org1 # Organization name
+          org: org0 # Organization name
           ansible_host: 1.2.3.4 # Real ip address
           ansible_user: ubuntu # User with sudo access
           ansible_private_key_file: ~/test.pem # Private key to identify ourselves
@@ -38,14 +38,14 @@ all:
         one.example.com:
           node_roles:
             - peer
-          org: org2
+          org: org1
           ansible_host: 1.2.3.5
           ansible_user: ubuntu
           ansible_private_key_file: ~/test.pem
         two.example.com:
           node_roles:
             - peer
-          org: org3
+          org: org2
           ansible_host: 1.2.3.6
           ansible_user: ubuntu
           ansible_private_key_file: ~/test.pem
