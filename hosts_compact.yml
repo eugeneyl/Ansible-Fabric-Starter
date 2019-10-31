@@ -23,7 +23,7 @@ all:
   children:
     nodes:
       hosts:
-        orderer.example.com:
+        orderer.example.com: #Name of your first node
           node_roles: # Describes which containers will run on this node
             - root_orderer
             - orderer
@@ -31,7 +31,7 @@ all:
             - root_peer
             - explorer
           org: org1 # Organization name
-          ansible_host: 1.2.3.4 # Real ip address or domain name of the machine
+          ansible_host: 1.2.3.4 # Real ip address
           ansible_user: ubuntu # User with sudo access
           ansible_private_key_file: ~/test.pem # Private key to identify ourselves
         # Same structure for any other nodes
