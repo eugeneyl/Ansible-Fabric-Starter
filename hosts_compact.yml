@@ -6,19 +6,19 @@ all:
       ansible_connection: local
   vars:
     domain: example.com
-    additional_channels: # optional, common channels are created by default. Just comment it out, if you don't need additional channels.
-      - name: firstChannel # channel name
-        particapants: # Organizations, should be included in channel
-        - org0
-        - org1
-      - name: secondChannel
-        particapants:
-        - org0
-        - org2
-      - name: thirdChannel
-        particapants:
-        - org1
-        - org2
+    # additional_channels: # optional, common channels are created by default. Just comment it out, if you don't need additional channels.
+    #   - name: first-channel # channel name
+    #     particapants: # Organizations, should be included in channel
+    #     - org0
+    #     - org1
+    #   - name: second-channel
+    #     particapants:
+    #     - org0
+    #     - org2
+    #   - name: third-channel
+    #     particapants:
+    #     - org1
+    #     - org2
     orderer_type: solo
   children:
     nodes:

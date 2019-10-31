@@ -64,37 +64,38 @@ services:
 {% endif %}
 {% endfor %}
 
- peer1.{{ org }}.{{ domain }}:
-   container_name: peer1.{{ org }}.{{ domain }}
-   extends:
-     file: base.yaml
-     service: peer-base
-   environment:
-     - CORE_PEER_ID=peer1.{{ org }}.{{ domain }}
-     - CORE_PEER_LOCALMSPID={{ org }}MSP
-     - CORE_PEER_ADDRESS=peer1.{{ org }}.{{ domain }}:7051
-     - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.{{ org }}.{{ domain }}:7051
-     - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.{{ org }}.{{ domain }}:7051
-   ports:
-     - {{ peer1_port }}:7051
-     - {{ event1_port }}:7053
-   volumes:
-       - {{ fabric_artifacts }}/crypto-config/peerOrganizations/{{ org }}.{{ domain }}/peers/peer1.{{ org }}.{{ domain }}/:/etc/hyperledger/crypto/peer
-       - peer1.{{ org }}.{{ domain }}:/var/hyperledger/production
-   depends_on:
-     - ca.{{ org }}.{{ domain }}
+  peer1.{{ org }}.{{ domain }}:
+    container_name: peer1.{{ org }}.{{ domain }}
+    extends:
+      file: base.yaml
+      service: peer-base
+    :wq
+    environment:
+      - CORE_PEER_ID=peer1.{{ org }}.{{ domain }}
+      - CORE_PEER_LOCALMSPID={{ org }}MSP
+      - CORE_PEER_ADDRESS=peer1.{{ org }}.{{ domain }}:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.{{ org }}.{{ domain }}:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.{{ org }}.{{ domain }}:7051
+    ports:
+      - {{ peer1_port }}:7051
+      - {{ event1_port }}:7053
+    volumes:
+        - {{ fabric_artifacts }}/crypto-config/peerOrganizations/{{ org }}.{{ domain }}/peers/peer1.{{ org }}.{{ domain }}/:/etc/hyperledger/crypto/peer
+        - peer1.{{ org }}.{{ domain }}:/var/hyperledger/production
+    depends_on:
+      - ca.{{ org }}.{{ domain }}
 {% if use_couchdb == 'yes' %}
-     - couchdb.{{ org }}.{{ domain }}
+      - couchdb.{{ org }}.{{ domain }}
 {% endif %}
-   extra_hosts:
+    extra_hosts:
 {% for fabric_host in groups['nodes'] %}
 {% if hostvars[fabric_host].inventory_hostname|string() != inventory_hostname|string() %}
 {% if 'orderer' in hostvars[fabric_host].node_roles %}
-     -  orderer{{ hostvars[fabric_host].orderer_id | default() }}.{{ domain }}:{{ hostvars[fabric_host].ansible_host }}
+      -  orderer{{ hostvars[fabric_host].orderer_id | default() }}.{{ domain }}:{{ hostvars[fabric_host].ansible_host }}
 {% endif %}
 {% if 'peer' in hostvars[fabric_host].node_roles %}
-     -  peer0.{{ hostvars[fabric_host].org }}.{{ domain }}:{{ hostvars[fabric_host].ansible_host }}
-     -  peer1.{{ hostvars[fabric_host].org }}.{{ domain }}:{{ hostvars[fabric_host].ansible_host }}
+      -  peer0.{{ hostvars[fabric_host].org }}.{{ domain }}:{{ hostvars[fabric_host].ansible_host }}
+      -  peer1.{{ hostvars[fabric_host].org }}.{{ domain }}:{{ hostvars[fabric_host].ansible_host }}
 {% endif %}
 {% endif %}
 {% endfor %}
