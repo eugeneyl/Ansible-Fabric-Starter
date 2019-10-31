@@ -117,8 +117,8 @@ files_to_rsync_orderer:
     to: "crypto-config/peerOrganizations/{{ org }}.{{ domain }}/peers/peer0.{{ org }}.{{ domain }}/tls"
   - from: "crypto-config/peerOrganizations/{{ org }}.{{ domain }}/peers/peer0.{{ org }}.{{ domain }}/msp/tlscacerts/tlsca.{{ org }}.{{ domain }}-cert.pem"
     to: "crypto-config/peerOrganizations/{{ org }}.{{ domain }}/peers/peer0.{{ org }}.{{ domain }}/msp/tlscacerts"
-#  - from: "crypto-config/peerOrganizations/{{ org }}.{{ domain }}/peers/peer1.{{ org }}.{{ domain }}/tls/ca.crt"
-#    to: "crypto-config/peerOrganizations/{{ org }}.{{ domain }}/peers/peer1.{{ org }}.{{ domain }}/tls"
+  - from: "crypto-config/peerOrganizations/{{ org }}.{{ domain }}/peers/peer1.{{ org }}.{{ domain }}/tls/ca.crt"
+    to: "crypto-config/peerOrganizations/{{ org }}.{{ domain }}/peers/peer1.{{ org }}.{{ domain }}/tls"
 
 files_to_rsync_nodes_phase1:
   - from: "crypto-config/ordererOrganizations/{{ domain }}/orderers"

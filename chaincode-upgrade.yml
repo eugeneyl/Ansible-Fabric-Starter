@@ -29,7 +29,7 @@
         raw: "{{ item }}"
         loop:
           - "docker exec 'cli.{{ org }}.{{ domain }}' bash -c 'export CORE_PEER_ADDRESS=peer0.{{ org }}.{{ domain }}:7051 && peer chaincode install -n {{ chaincode_common_name }} -v {{ chaincode_version }} -p {% if chaincode_lang != 'golang' %} /opt/gopath/src/{{ chaincode_common_name }} {% else %} {{ chaincode_common_name }} {% endif %} -l {{ chaincode_lang }}'"
-          #- "docker exec 'cli.{{ org }}.{{ domain }}' bash -c 'export CORE_PEER_ADDRESS=peer1.{{ org }}.{{ domain }}:7051 && peer chaincode install -n {{ chaincode_common_name }} -v {{ chaincode_version }} -p {% if chaincode_lang != 'golang' %} /opt/gopath/src/{{ chaincode_common_name }} {% else %} {{ chaincode_common_name }} {% endif %} -l {{ chaincode_lang }}'"
+          - "docker exec 'cli.{{ org }}.{{ domain }}' bash -c 'export CORE_PEER_ADDRESS=peer1.{{ org }}.{{ domain }}:7051 && peer chaincode install -n {{ chaincode_common_name }} -v {{ chaincode_version }} -p {% if chaincode_lang != 'golang' %} /opt/gopath/src/{{ chaincode_common_name }} {% else %} {{ chaincode_common_name }} {% endif %} -l {{ chaincode_lang }}'"
         retries: 10
         delay: 1
         register: result
@@ -39,7 +39,7 @@
         raw: "{{ item }}"
         loop:
           - "docker exec 'cli.{{ org }}.{{ domain }}' bash -c 'export CORE_PEER_ADDRESS=peer0.{{ org }}.{{ domain }}:7051 && peer chaincode install -n {{ chaincode_bilateral_name }} -v {{ chaincode_version }} -p {% if chaincode_lang != 'golang' %} /opt/gopath/src/{{ chaincode_bilateral_name }} {% else %} {{ chaincode_bilateral_name }} {% endif %} -l {{ chaincode_lang }}'"
-          #- "docker exec 'cli.{{ org }}.{{ domain }}' bash -c 'export CORE_PEER_ADDRESS=peer1.{{ org }}.{{ domain }}:7051 && peer chaincode install -n {{ chaincode_bilateral_name }} -v {{ chaincode_version }} -p {% if chaincode_lang != 'golang' %} /opt/gopath/src/{{ chaincode_bilateral_name }} {% else %} {{ chaincode_bilateral_name }} {% endif %} -l {{ chaincode_lang }}'"
+          - "docker exec 'cli.{{ org }}.{{ domain }}' bash -c 'export CORE_PEER_ADDRESS=peer1.{{ org }}.{{ domain }}:7051 && peer chaincode install -n {{ chaincode_bilateral_name }} -v {{ chaincode_version }} -p {% if chaincode_lang != 'golang' %} /opt/gopath/src/{{ chaincode_bilateral_name }} {% else %} {{ chaincode_bilateral_name }} {% endif %} -l {{ chaincode_lang }}'"
         when: "additional_channels is defined"
         retries: 10
         delay: 1
